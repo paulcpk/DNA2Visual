@@ -7,15 +7,58 @@
     // An object literal
     var DNA = {
         dnaString: '',
+        squareRoot: 80,
+        numBase: 4,
      
-        convertStringToArray: function(string, bit) {
-            // console.time('convert');
-            var re = new RegExp('.{1,' + bit + '}', 'g');
-            var cleanString = string.trim();
-            console.log(cleanString.match(re));
-            // console.timeEnd('convert');
+        convertStringToArray: function(string) {
+            console.time('convert');
+            console.log(DNA.numBase);
+            var baseValue = parseInt(DNA.numBase);
+            var rootSquared = DNA.squareRoot * DNA.squareRoot;
+            var numOfPixels = rootSquared * baseValue * 3;
+            var cleanString = string.trim().slice(0, numOfPixels);
+            // var re = new RegExp('.{1,' + bit + '}', 'g');
+            // var returnArray = cleanString.match(re);
+            var returnArray = [];
+            for (i = 0; i <= rootSquared; i++) {
+              var rgb = DNA.convertValueToRgb(cleanString.substr(baseValue * i, baseValue));
+              returnArray.push(rgb);
+            }
+
+            console.timeEnd('convert');
+            return returnArray;
         },
-     
+
+        convertValueToRgb: function(string) {
+            console.log(DNA.stringToNumbers(string));
+            return [250,100,0];
+        },
+
+        stringToNumbers: function(string) {
+          var tempString;
+          // for (i=0; i < string.length; i++) {
+          //   console.log(string[i]);
+          //   switch(string[i]) {
+          //     case 'A':
+          //       tempString += '0'
+          //       break;
+          //     case 'T':
+          //       tempString += '1'
+          //       break;
+          //     case 'G':
+          //       tempString += '2'
+          //       break;
+          //     case 'C':
+          //       tempString += '3'
+          //       break;
+          //     default:
+          //       return
+          //   }
+          }
+          // console.log(tempString);
+          return string;
+        },
+
         init: function( settings ) {
           // set settings
           DNA.settings = settings;
@@ -24,8 +67,13 @@
 
           form.on('submit', function(e) {
             e.preventDefault();
+
             var result = form.serializeArray();
-            DNA.convertStringToArray(result[1].value, result[0].value);
+            DNA.numBase = parseInt(result[0].value);
+
+            var rgbArray = DNA.convertStringToArray(result[1].value);
+
+            DNA.executeD3(rgbArray);
           });
         },
      
@@ -33,7 +81,9 @@
             console.log( DNA.settings );
         },
 
-        executeD3: function() {
+        executeD3: function(rgbArray) {
+
+          console.log(rgbArray);
           var 
             n = 80, // square root of number of nodes
             m = 1500, // number of data
@@ -57,7 +107,7 @@
             nodes.push({
               x: i % n,
               y: Math.floor(i / n),
-              value: [random(), random(), random()]
+              value: rgbArray[i]
             });
           }
            
@@ -91,8 +141,6 @@
     };
 
     DNA.init();
-
-    DNA.executeD3();
   
     
 
