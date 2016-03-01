@@ -1,82 +1,99 @@
 /* ========================================================================
- * DOM-based Routing
- * Based on http://goo.gl/EUTi53 by Paul Irish
- *
- * Only fires on body classes that match. If a body class contains a dash,
- * replace the dash with an underscore when adding it to the object below.
- *
- * .noConflict()
- * The routing is enclosed within an anonymous function so that you can
- * always reference jQuery with $, even when in .noConflict() mode.
+ * Main JS
  * ======================================================================== */
 
 (function($) {
 
-  // Use this variable to set up the common and page specific functions. If you
-  // rename this variable, you will also need to rename the namespace below.
-  var Sage = {
-    // All pages
-    'common': {
-      init: function() {
-        // JavaScript to be fired on all pages
-      },
-      finalize: function() {
-        // JavaScript to be fired on all pages, after page specific JS is fired
-      }
-    },
-    // Home page
-    'home': {
-      init: function() {
-        // JavaScript to be fired on the home page
+    // An object literal
+    var DNA = {
+        dnaString: '',
+     
+        convertStringToArray: function(string, bit) {
+            // console.time('convert');
+            var re = new RegExp('.{1,' + bit + '}', 'g');
+            var cleanString = string.trim();
+            console.log(cleanString.match(re));
+            // console.timeEnd('convert');
+        },
+     
+        init: function( settings ) {
+          // set settings
+          DNA.settings = settings;
 
-        
+          var form = $('#dnaForm');
 
+          form.on('submit', function(e) {
+            e.preventDefault();
+            var result = form.serializeArray();
+            DNA.convertStringToArray(result[1].value, result[0].value);
+          });
+        },
+     
+        readSettings: function() {
+            console.log( DNA.settings );
+        },
 
-        
-      },
-      finalize: function() {
-        // JavaScript to be fired on the home page, after the init JS
-      }
-    },
-    // About us page, note the change from about-us to about_us.
-    'about_us': {
-      init: function() {
-        // JavaScript to be fired on the about us page
-      }
-    }
-  };
+        executeD3: function() {
+          var 
+            n = 80, // square root of number of nodes
+            m = 1500, // number of data
+            d = 1, // dimension of data 
+            sen = 10, //size of each node (pixel)
+            nodes = [],
+            data = []
+          ; 
+           
+          function random(){
+            return Math.floor(Math.random() * 256);
+          }
+           
+          // generate data
+          for(var i = 0; i < m; i++){
+            data.push([random(), random(), random()]);
+          }
+           
+          // initialize nodes
+          for(var i = 0; i < n * n; i++){
+            nodes.push({
+              x: i % n,
+              y: Math.floor(i / n),
+              value: [random(), random(), random()]
+            });
+          }
+           
+          function rgb(array){
+            return 'rgb('+ array.map(function(r){return Math.round(r);}).join(',') +')';
+          }
+           
+          var 
+            svg = d3.select('#dnaDisplay').append('svg').attr('width', 800).attr('height', 800),
+            margin = 30,
+            width = n * sen,
+            height = n * sen
+          ;
+           
+          var 
+            rgb_nodes = svg.append('g').attr('class','nodes all');
+           
+          rgb_nodes
+            .selectAll('rect')
+            .data(nodes)
+            .enter().append('rect')
+              .attr('x', function(node){return node.x * sen;})
+              .attr('y', function(node){return node.y * sen;})
+              .attr('width', sen)
+              .attr('height', sen)
+              .style('fill', function(node){return rgb(node.value);})
+           
+           
+           
+        }
+    };
 
-  // The routing fires all common scripts, followed by the page specific scripts.
-  // Add additional events for more control over timing e.g. a finalize event
-  var UTIL = {
-    fire: function(func, funcname, args) {
-      var fire;
-      var namespace = Sage;
-      funcname = (funcname === undefined) ? 'init' : funcname;
-      fire = func !== '';
-      fire = fire && namespace[func];
-      fire = fire && typeof namespace[func][funcname] === 'function';
+    DNA.init();
 
-      if (fire) {
-        namespace[func][funcname](args);
-      }
-    },
-    loadEvents: function() {
-      // Fire common init JS
-      UTIL.fire('common');
-
-      // Fire page-specific init JS, and then finalize JS
-      $.each(document.body.className.replace(/-/g, '_').split(/\s+/), function(i, classnm) {
-        UTIL.fire(classnm);
-        UTIL.fire(classnm, 'finalize');
-      });
-
-      // Fire common finalize JS
-      UTIL.fire('common', 'finalize');
-    }
-  };
-
-  // Load Events
-  $(document).ready(UTIL.loadEvents);
+    DNA.executeD3();
+  
+    
 
 })(jQuery); // Fully reference jQuery after this point.

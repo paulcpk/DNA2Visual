@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="dist/styles/main.css">
 
         <script src="dist/scripts/modernizr.js"></script>
+        <script src="dist/scripts/lodash.js"></script>
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -33,30 +34,34 @@
       </div>
     </nav>
 
-    <!-- Main DNA Container -->
-    <div class="container">
-      <div id="dnaDisplay"></div>
-    </div>
-    <!-- /Main DNA Container -->
     <!-- DNA Input -->
     <div id="main" class="container">
-      <form action="" id="dnaForm">
-        <div class="form-group">
-          <select name="typeSelect" id="typeSelect" class="form-control">
-            <option value="4">4bit</option>
-            <option value="8">8bit</option>
-            <option value="16">16bit</option>
-            <option value="32">32bit</option>
-            <option value="64">64bit</option>
-          </select>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div id="dnaDisplay"></div>
         </div>
-        <div class="form-group">
-          <textarea name="dnaInput" id="dnaInput" cols="30" rows="10" class="form-control"></textarea>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <form action="" id="dnaForm">
+            <div class="form-group">
+              <select name="typeSelect" id="typeSelect" class="form-control">
+                <option value="4" selected>4bit</option>
+                <option value="8">8bit</option>
+                <option value="16">16bit</option>
+                <option value="32">32bit</option>
+                <option value="64">64bit</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <textarea name="dnaInput" id="dnaInput" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary">Submit</button>
+            </div>
+          </form>
         </div>
-        <div class="form-group">
-          <button class="btn btn-primary">Submit</button>
-        </div>
-      </form>
+      </div>
     </div>
     <!-- /DNA Input -->
 

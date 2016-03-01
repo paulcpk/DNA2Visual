@@ -1,6 +1,11 @@
 
 #dnaDisplay {
-  height: 800px;
-  width: 800px;
-  display: none;
+  margin-bottom: 30px;
+  max-width: 100%;
+  @extend .clearfix;
+  svg {
+    width: 100% !important;
+    height: auto;
+  }
+  // display: none;
 }

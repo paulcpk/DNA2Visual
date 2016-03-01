@@ -1,5 +1,6 @@
-# sage-html5boilerplate
-This is an HTML5-Boilerplate ([https://github.com/h5bp/html5boilerplate.com](https://github.com/h5bp/html5boilerplate.com)) package with the awesome workflow of the sage-template by roots.io ([https://github.com/roots/sage](https://github.com/roots/sage)).
+# DNA2Visual
+
+Get DNA code here: http://www.ncbi.nlm.nih.gov/
 
 ## Requirements
 

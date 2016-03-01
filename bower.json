@@ -15,6 +15,9 @@
     "modernizr": {
       "main": "./modernizr.js"
     },
+    "lodash": {
+      "main": ".dist/lodash.js"
+    },
     "bootstrap-sass-official": {
       "main": [
         "./assets/stylesheets/_bootstrap.scss",
