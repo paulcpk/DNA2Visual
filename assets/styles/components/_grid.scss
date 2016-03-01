@@ -1,0 +1,39 @@
+// Grid system
+.main {
+  @include make-sm-column($main-sm-columns);
+  .sidebar-primary & {
+    @include make-sm-column($main-sm-columns - $sidebar-sm-columns);
+  }
+}
+.sidebar {
+  @include make-sm-column($sidebar-sm-columns);
+}
+
+
+/* Small devices (tablets, 450px and up) */
+@media (min-width: 450px) { 
+
+
+
+}
+
+
+@media (min-width: 768px) {
+
+
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+
+
+
+}
