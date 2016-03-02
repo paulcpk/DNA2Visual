@@ -7,7 +7,7 @@
     // An object literal
     var DNA = {
         dnaString: '',
-        squareRoot: 80,
+        squareRoot: 20,
         numBase: 4,
      
         convertStringToArray: function(string) {
@@ -16,46 +16,45 @@
             var baseValue = parseInt(DNA.numBase);
             var rootSquared = DNA.squareRoot * DNA.squareRoot;
             var numOfPixels = rootSquared * baseValue * 3;
-            var cleanString = string.trim().slice(0, numOfPixels);
+            var cleanString = DNA.convertToBase4(string.trim().slice(0, numOfPixels));
             // var re = new RegExp('.{1,' + bit + '}', 'g');
             // var returnArray = cleanString.match(re);
             var returnArray = [];
-            for (i = 0; i <= rootSquared; i++) {
+            var tempString = '';
+            
+            var rgbChunk = [];
+            for (i = 1; i <= rootSquared; i++) {
               var rgb = DNA.convertValueToRgb(cleanString.substr(baseValue * i, baseValue));
-              returnArray.push(rgb);
+              rgbChunk.push(rgb);
+              if (i % 3 === 0) {
+                returnArray.push(rgbChunk);
+                rgbChunk = [];
+              }
             }
 
             console.timeEnd('convert');
+            console.log(returnArray);
             return returnArray;
         },
 
         convertValueToRgb: function(string) {
-            console.log(DNA.stringToNumbers(string));
-            return [250,100,0];
+            return parseInt(string, DNA.numBase);
+        },
+
+        convertToBase4: function(string) {
+          var mapObj = {
+             A:"0",
+             C:"1",
+             G:"2",
+             T:"3"
+          };
+          numberString = string.replace(/A|C|G|T/gi, function(matched){
+            return mapObj[matched];
+          });
+          return numberString;
         },
 
         stringToNumbers: function(string) {
-          var tempString;
-          // for (i=0; i < string.length; i++) {
-          //   console.log(string[i]);
-          //   switch(string[i]) {
-          //     case 'A':
-          //       tempString += '0'
-          //       break;
-          //     case 'T':
-          //       tempString += '1'
-          //       break;
-          //     case 'G':
-          //       tempString += '2'
-          //       break;
-          //     case 'C':
-          //       tempString += '3'
-          //       break;
-          //     default:
-          //       return
-          //   }
-          }
-          // console.log(tempString);
           return string;
         },
 
@@ -83,24 +82,14 @@
 
         executeD3: function(rgbArray) {
 
-          console.log(rgbArray);
           var 
-            n = 80, // square root of number of nodes
-            m = 1500, // number of data
+            n = DNA.squareRoot, // square root of number of nodes
+            m = n * n, // number of data
             d = 1, // dimension of data 
             sen = 10, //size of each node (pixel)
             nodes = [],
             data = []
           ; 
-           
-          function random(){
-            return Math.floor(Math.random() * 256);
-          }
-           
-          // generate data
-          for(var i = 0; i < m; i++){
-            data.push([random(), random(), random()]);
-          }
            
           // initialize nodes
           for(var i = 0; i < n * n; i++){
@@ -112,7 +101,8 @@
           }
            
           function rgb(array){
-            return 'rgb('+ array.map(function(r){return Math.round(r);}).join(',') +')';
+            console.log(array);
+            // return 'rgb('+ array.map(function(r){return Math.round(r);}).join(',') +')';
           }
            
           var 
