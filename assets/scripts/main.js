@@ -7,7 +7,8 @@
     // An object literal
     var DNA = {
         dnaString: '',
-        squareRoot: 20,
+        squareRoot: 200,
+        sideLength: 800,
         numBase: 4,
      
         convertStringToArray: function(string) {
@@ -25,11 +26,12 @@
             var rgbChunk = [];
             for (i = 1; i <= rootSquared; i++) {
               var rgb = DNA.convertValueToRgb(cleanString.substr(baseValue * i, baseValue));
-              rgbChunk.push(rgb);
-              if (i % 3 === 0) {
-                returnArray.push(rgbChunk);
-                rgbChunk = [];
-              }
+              returnArray.push(rgb);
+              // rgbChunk.push(rgb);
+              // if (i % 3 === 0) {
+              //   returnArray.push(rgbChunk);
+              //   rgbChunk = [];
+              // }
             }
 
             console.timeEnd('convert');
@@ -72,7 +74,7 @@
 
             var rgbArray = DNA.convertStringToArray(result[1].value);
 
-            DNA.executeD3(rgbArray);
+            // DNA.executeD3(rgbArray);
           });
         },
      
