@@ -1,11 +1,15 @@
 
+#dnaDisplayContainer {
+  display: none;
+  @extend .clearfix;
+}
+
 #dnaDisplay {
   margin-bottom: 30px;
-  max-width: 100%;
-  @extend .clearfix;
-  svg {
-    width: 100% !important;
-    height: auto;
-  }
-  // display: none;
+  width: 100%;
+  height: auto;
+}
+
+#downloadButton {
+  margin-bottom: 30px;
 }

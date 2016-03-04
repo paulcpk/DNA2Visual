@@ -1,8 +1,5 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -14,12 +11,11 @@
         <link rel="stylesheet" href="dist/styles/main.css">
 
         <script src="dist/scripts/modernizr.js"></script>
-        <script src="dist/scripts/lodash.js"></script>
     </head>
     <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+    <!--[if lt IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -37,16 +33,20 @@
     <!-- DNA Input -->
     <div id="main" class="container">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <div id="dnaDisplay"></div>
+        <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+          <div id="dnaDisplayContainer">
+            <canvas id="dnaDisplay" width="800" height="800"></canvas>
+            <div id="downloadButtonContainer">
+              <a href="#" class="btn btn-primary btn-block" id="downloadButton" download="DNA2Visual.png"><i class="fa fa-file"></i>&nbsp;Download</a>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
           <form action="" id="dnaForm">
             <div class="form-group">
               <select name="typeSelect" id="typeSelect" class="form-control">
-                <option value="8">Binary</option>
                 <option value="4" selected>Base-4</option>
               </select>
             </div>
@@ -65,9 +65,15 @@
 
     <div class="container">
       <footer>
-        <p>&copy; WEBCASCADE - webcascade.com</p>
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+            <p>&copy; WEBCASCADE - webcascade.com</p>
+          </div>
+        </div>
       </footer>
-    </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    </div> <!-- /container -->        
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="dist/scripts/jquery.js"><\/script>')</script>
 
         <script src="dist/scripts/main.js"></script>
