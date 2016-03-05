@@ -19,26 +19,31 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
           <a class="navbar-brand" href="#">DNA2Visual</a>
         </div>
+<!--         <div class="navbar-collapse">
+          <button type="button" class="btn btn-primary navbar-btn pull-right" data-toggle="modal" data-target="#examplesModal">Examples</button>
+        </div> -->
       </div>
     </nav>
 
     <!-- DNA Input -->
     <div id="main" class="container">
-      <div class="row">
+      <div class="row" id="introduction">
         <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-          <div id="dnaDisplayContainer">
-            <canvas id="dnaDisplay" width="800" height="800"></canvas>
-            <div id="downloadButtonContainer">
-              <a href="#" class="btn btn-primary btn-block" id="downloadButton" download="DNA2Visual.png"><i class="fa fa-file"></i>&nbsp;Download</a>
-            </div>
+          <div class="jumbotron">
+            <h1>DNA Visualizer <br><small>Create PNGs from your genome data</small></h1>
+            <p>Just paste your DNA/RNA code into the textbox below and hit the render button.</p>
+            <p><strong>The image is rendered in your browser, this will eventually freeze your browser for a few seconds.</strong></p>
+            <p>For performance reasons DNA string is being reduced to 3.000.000 characters.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="dnaDisplayContainer">
+        <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+          <canvas id="dnaDisplay" width="800" height="800"></canvas>
+          <div id="downloadButtonContainer">
+            <a href="#" class="btn btn-primary btn-block" id="downloadButton" download="DNA2Visual.png"><i class="fa fa-download"></i>&nbsp;Download</a>
           </div>
         </div>
       </div>
@@ -47,14 +52,14 @@
           <form action="" id="dnaForm">
             <div class="form-group">
               <select name="typeSelect" id="typeSelect" class="form-control">
-                <option value="4" selected>Base-4</option>
+                <option value="4" selected>Color (Base-4)</option>
               </select>
             </div>
             <div class="form-group">
-              <textarea name="dnaInput" id="dnaInput" cols="30" rows="10" class="form-control" placeholder="Put DNA code here"></textarea>
+              <textarea name="dnaInput" id="dnaInput" cols="30" rows="10" class="form-control" placeholder="Paste DNA code here"></textarea>
             </div>
-            <div class="form-group">
-              <button class="btn btn-primary">Submit</button>
+            <div class="form-group render-button-container">
+              <button class="btn btn-primary">Render</button>
             </div>
           </form>
         </div>
@@ -64,14 +69,80 @@
 
 
     <div class="container">
-      <footer>
+      <footer id="footer">
         <div class="row">
           <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-            <p>&copy; WEBCASCADE - webcascade.com</p>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <p class="pull-left">&copy; WEBCASCADE - <a href="http://webcascade.com" target="_blank">webcascade.com</a> - <a href="#"  data-toggle="modal" data-target="#disclaimerModal">Disclaimer</a></p>
+                <a href="https://github.com/Webcascade/DNA2Visual" class="pull-right" target="_blank"><i class="fa fa-github"></i></a>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
-    </div> <!-- /container -->        
+    </div>
+
+    <!-- examples modal -->
+    <div class="modal fade" id="examplesModal" tabindex="-1" role="dialog" aria-labelledby="examplesModalLabel">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Example DNA Code</h4>
+          </div>
+          <div class="modal-body clearfix">
+            <div class="col-md-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Excerpt of Human female X chromosome</h3>
+                </div>
+                <div class="panel-body">
+                  Panel content
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /examples modal -->  
+
+    <!-- disclaimer modal -->
+    <div class="modal fade" id="disclaimerModal" tabindex="-1" role="dialog" aria-labelledby="disclaimerModalLabel">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Disclaimer for DNA2Visual</h4>
+          </div>
+          <div class="modal-body">
+            <h4>Disclaimer</h4>
+            <p>
+            All the information on this website is published in good faith and for general information purpose only. DNA2Visual.com does not make any warranties about the completeness, reliability and accuracy of this information or our service. Any action you take upon the information you find on this website (DNA2Visual.com), is strictly at your own risk. DNA2Visual.com will not be liable for any losses and/or damages in connection with the use of our website.
+            </p>
+            <p>
+            From our website, you can visit other websites by following hyperlinks to such external sites. While we strive to provide only quality links to useful and ethical websites, we have no control over the content and nature of these sites. These links to other websites do not imply a recommendation for all the content found on these sites. Site owners and content may change without notice and may occur before we have the opportunity to remove a link which may have gone 'bad'.
+            </p>
+            <p>
+            Please be also aware that when you leave our website, other sites may have different privacy policies and terms which are beyond our control. Please be sure to check the Privacy Policies of these sites as well as their "Terms of Service" before engaging in any business or uploading any information.
+            </p>
+
+            <h4>Consent</h4>
+            <p>
+            By using our website, you hereby consent to our disclaimer and agree to its terms.
+            </p><h4>Update</h4>This site disclaimer was last updated on: Saturday, March 5th, 2016<br /><em> · Should we update, amend or make any changes to this document, those changes will be prominently posted here.</em><br /><br />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div> 
+    <!-- /disclaimer modal -->
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="dist/scripts/jquery.js"><\/script>')</script>

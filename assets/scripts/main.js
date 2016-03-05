@@ -7,21 +7,24 @@
     // An object literal
     var DNA = {
         dnaString: '',
-        squareRoot: 250,
+        squareRoot: 200,
         sideLength: 800,
+        maxLength: 3000000,
         numBase: 4,
         canvas: document.getElementById('dnaDisplay'),
      
         convertStringToArray: function(string) {
             console.time('convert');
-            var baseValue = parseInt(DNA.numBase);
-            var rootSquared = DNA.squareRoot * DNA.squareRoot;
-            var numOfPixels = rootSquared * baseValue * 3;
-            var cleanString = string.trim().slice(0, numOfPixels);
-                // if (cleanString.length < numOfPixels)
-                cleanString = DNA.convertToBase4(cleanString);
+            var cleanString = string.trim().toUpperCase();
+                cleanString = DNA.convertToBase4(cleanString).slice(0, DNA.maxLength);
 
-            var re = new RegExp('.{1,' + baseValue + '}', 'g');
+            DNA.squareRoot = Math.floor(Math.sqrt(cleanString.length / DNA.numBase / 3));
+            console.log(cleanString.length);
+            console.log(DNA.squareRoot);
+            var rootSquared = DNA.squareRoot * DNA.squareRoot;
+            var numOfPixels = rootSquared * DNA.numBase * 3;
+
+            var re = new RegExp('.{1,' + DNA.numBase + '}', 'g');
             var returnArray = cleanString.match(re);
             
             console.log(returnArray);
@@ -37,9 +40,10 @@
              A:"0",
              C:"1",
              G:"2",
-             T:"3"
+             T:"3",
+             U:"3"
           };
-          numberString = string.replace(/A|C|G|T/gi, function(matched){
+          numberString = string.replace(/A|C|G|T|U/gi, function(matched){
             return mapObj[matched];
           });
           return numberString;
@@ -53,18 +57,27 @@
           var displayContainer = $('#dnaDisplayContainer');
           var downloadButton = $('#downloadButton');
           var canvas = $('#dnaDisplay');
+          var introduction = $('#introduction');
 
           form.on('submit', function(e) {
             e.preventDefault();
 
             var result = form.serializeArray();
-            DNA.numBase = parseInt(result[0].value);
 
-            var rgbArray = DNA.convertStringToArray(result[1].value);
+            // if result is valid 
+            if (result[1].value.length > 0) {
+              introduction.hide();
+              form.find('textarea').removeClass('error');
+              DNA.numBase = parseInt(result[0].value);
+              var rgbArray = DNA.convertStringToArray(result[1].value);
+              DNA.executeD3(rgbArray);
+              displayContainer.show();
+            } else {
+              displayContainer.hide();
+              introduction.show();
+              form.find('textarea').addClass('error');
+            }
 
-            DNA.executeD3(rgbArray);
-
-            displayContainer.slideDown(250);
           });
 
           // when download button is clicked, provide PNG
