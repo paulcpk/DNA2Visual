@@ -53,15 +53,17 @@ var project = manifest.getProjectGlobs();
 // CLI options
 var enabled = {
   // Enable static asset revisioning when `--production`
-  rev: argv.production,
+  // rev: argv.production,
   // Disable source maps when `--production`
   maps: !argv.production,
   // Fail styles task on error when `--production`
   failStyleTask: argv.production,
   // Fail due to JSHint warnings only when `--production`
-  failJSHint: argv.production,
+  // failJSHint: argv.production,
   // Strip debug statments from javascript when `--production`
-  stripJSDebug: argv.production
+  stripJSDebug: argv.production,
+
+  uglify: argv.production
 };
 
 // Path to the compiled assets manifest in the dist directory
@@ -135,6 +137,9 @@ var jsTasks = function(filename) {
     })
     .pipe(concat, filename)
     // .pipe(uglify)
+    .pipe(function() {
+      return gulpif(enabled.uglify, uglify());
+    })
     .pipe(function() {
       return gulpif(enabled.rev, rev());
     })

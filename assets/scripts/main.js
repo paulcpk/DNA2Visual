@@ -12,42 +12,6 @@
         maxLength: 3000000,
         numBase: 4,
         canvas: document.getElementById('dnaDisplay'),
-     
-        convertStringToArray: function(string) {
-            console.time('convert');
-            var cleanString = string.trim().toUpperCase();
-                cleanString = DNA.convertToBase4(cleanString).slice(0, DNA.maxLength);
-
-            DNA.squareRoot = Math.floor(Math.sqrt(cleanString.length / DNA.numBase / 3));
-            console.log(cleanString.length);
-            console.log(DNA.squareRoot);
-            var rootSquared = DNA.squareRoot * DNA.squareRoot;
-            var numOfPixels = rootSquared * DNA.numBase * 3;
-
-            var re = new RegExp('.{1,' + DNA.numBase + '}', 'g');
-            var returnArray = cleanString.match(re);
-            
-            console.log(returnArray);
-            return returnArray;
-        },
-
-        convertValueToRgb: function(string) {
-            return parseInt(string, DNA.numBase);
-        },
-
-        convertToBase4: function(string) {
-          var mapObj = {
-             A:"0",
-             C:"1",
-             G:"2",
-             T:"3",
-             U:"3"
-          };
-          numberString = string.replace(/A|C|G|T|U/gi, function(matched){
-            return mapObj[matched];
-          });
-          return numberString;
-        },
 
         init: function( settings ) {
           // set settings
@@ -89,6 +53,49 @@
             downloadButton.attr('href', downloadStream);
           });
 
+        },
+
+        readTextFile: function(file, callback) {
+          $.get(file, function(data) {
+             callback(data);
+          }, 'text');
+        },
+     
+        convertStringToArray: function(string) {
+            console.time('convert');
+            var cleanString = string.trim().toUpperCase().replace(/(\r\n|\n|\r)/gm,'');
+            console.log(cleanString);
+                cleanString = DNA.convertToBase4(cleanString).slice(0, DNA.maxLength);
+
+            DNA.squareRoot = Math.floor(Math.sqrt(cleanString.length / DNA.numBase / 3));
+            console.log(cleanString.length);
+            console.log(DNA.squareRoot);
+            var rootSquared = DNA.squareRoot * DNA.squareRoot;
+            var numOfPixels = rootSquared * DNA.numBase * 3;
+
+            var re = new RegExp('.{1,' + DNA.numBase + '}', 'g');
+            var returnArray = cleanString.match(re);
+            
+            console.log(returnArray);
+            return returnArray;
+        },
+
+        convertValueToRgb: function(string) {
+            return parseInt(string, DNA.numBase);
+        },
+
+        convertToBase4: function(string) {
+          var mapObj = {
+             A:"0",
+             C:"1",
+             G:"2",
+             T:"3",
+             U:"3"
+          };
+          numberString = string.replace(/A|C|G|T|U/gi, function(matched){
+            return mapObj[matched];
+          });
+          return numberString;
         },
      
         readSettings: function() {

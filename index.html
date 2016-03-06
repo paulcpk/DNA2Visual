@@ -19,11 +19,11 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">DNA2Visual</a>
+          <a class="navbar-brand" href="/">DNA2Visual</a>
         </div>
-<!--         <div class="navbar-collapse">
+        <div class="navbar-collapse">
           <button type="button" class="btn btn-primary navbar-btn pull-right" data-toggle="modal" data-target="#examplesModal">Examples</button>
-        </div> -->
+        </div>
       </div>
     </nav>
 
@@ -34,8 +34,8 @@
           <div class="jumbotron">
             <h1>DNA Visualizer <br><small>Create PNGs from your genome data</small></h1>
             <p>Just paste your DNA/RNA code into the textbox below and hit the render button.</p>
-            <p><strong>The image is rendered in your browser, this will eventually freeze your browser for a few seconds.</strong></p>
-            <p>For performance reasons DNA string is being reduced to 3.000.000 characters.</p>
+            <p><strong>The image is rendered in your browser, this will eventually freeze your browser window for a few seconds.</strong></p>
+            <p>For performance reasons it's not recommended to use genome sequences larger than 10MB.</p>
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@
               </select>
             </div>
             <div class="form-group">
-              <textarea name="dnaInput" id="dnaInput" cols="30" rows="10" class="form-control" placeholder="Paste DNA code here"></textarea>
+              <textarea name="dnaInput" id="dnaInput" cols="30" rows="10" class="form-control" placeholder="Paste your DNA sequence here..."></textarea>
             </div>
             <div class="form-group render-button-container">
               <button class="btn btn-primary">Render</button>
@@ -92,15 +92,11 @@
             <h4 class="modal-title">Example DNA Code</h4>
           </div>
           <div class="modal-body clearfix">
-            <div class="col-md-6">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Excerpt of Human female X chromosome</h3>
-                </div>
-                <div class="panel-body">
-                  Panel content
-                </div>
-              </div>
+            <div class="list-group">
+              <a href="/examples/x_chromosome_excerpt.txt" class="list-group-item" target="_blank">Human X chromosome excerpt <i class="fa fa-external-link"></i></a>
+              <a href="/examples/hiv_1_excerpt.txt" class="list-group-item" target="_blank">HIV 1 genome excerpt <i class="fa fa-external-link"></i></a>
+              <a href="/examples/yersinia_pestis_excerpt.txt" class="list-group-item" target="_blank">Yersinia Pestis (Plague) genome excerpt <i class="fa fa-external-link"></i></a>
+              <a href="/examples/citrus_clementina_excerpt.txt" class="list-group-item" target="_blank">Citrus Clementina (Clementine) genome excerpt <i class="fa fa-external-link"></i></a>
             </div>
           </div>
           <div class="modal-footer">
