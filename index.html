@@ -18,12 +18,10 @@
     <![endif]-->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
-        <div class="navbar-header">
+        <div class="navbar-header pull-left">
           <a class="navbar-brand" href="/">DNA2Visual</a>
         </div>
-        <div class="navbar-collapse">
-          <button type="button" class="btn btn-primary navbar-btn pull-right" data-toggle="modal" data-target="#examplesModal">Examples</button>
-        </div>
+        <button type="button" class="btn btn-primary navbar-btn pull-right" data-toggle="modal" data-target="#examplesModal">Examples</button>
       </div>
     </nav>
 
@@ -33,17 +31,27 @@
         <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
           <div class="jumbotron">
             <h1>DNA Visualizer <br><small>Create PNGs from your genome data</small></h1>
-            <p>Just paste your DNA/RNA code into the textbox below and hit the render button.</p>
+            <p>Just paste your DNA code (not RNA) into the textbox below and hit the render button.</p>
             <p><strong>The image is rendered in your browser, this will eventually freeze your browser window for a few seconds.</strong></p>
             <p>For performance reasons it's not recommended to use genome sequences larger than 10MB.</p>
+            <p>Check out some sequence examples <a data-toggle="modal" data-target="#examplesModal">here</a>.</p>
           </div>
         </div>
       </div>
       <div class="row" id="dnaDisplayContainer">
         <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
           <canvas id="dnaDisplay" width="800" height="800"></canvas>
+          <div id="aminoacidTypes">
+            <ul class="list-inline">
+              <li><span class="aminoacid-info"><i class="fa fa-stop" style="color: #FFE75F;"></i>Nonpolar</span></li>
+              <li><span class="aminoacid-info"><i class="fa fa-stop" style="color: #B3DEC0;"></i>Polar</span></li>
+              <li><span class="aminoacid-info"><i class="fa fa-stop" style="color: #BBBFE0;"></i>Basic</span></li>
+              <li><span class="aminoacid-info"><i class="fa fa-stop" style="color: #F8B7D3;"></i>Acidic</span></li>
+              <li><span class="aminoacid-info"><i class="fa fa-stop" style="color: #333333;"></i>Stop codon</span></li>
+            </ul>
+          </div>
           <div id="downloadButtonContainer">
-            <a href="#" class="btn btn-primary btn-block" id="downloadButton" download="DNA2Visual.png"><i class="fa fa-download"></i>&nbsp;Download</a>
+            <a href="#" class="btn btn-primary btn-block" id="downloadButton"><i class="fa fa-download"></i>&nbsp;Download</a>
           </div>
         </div>
       </div>
@@ -52,7 +60,8 @@
           <form action="" id="dnaForm">
             <div class="form-group">
               <select name="typeSelect" id="typeSelect" class="form-control">
-                <option value="4" selected>Color (Base-4)</option>
+                <option value="base-4" selected>Color (Base-4)</option>
+                <option value="amino-acids">Amino acids (nonpolar|polar|basic|acidic|stop)</option>
               </select>
             </div>
             <div class="form-group">
@@ -72,12 +81,9 @@
       <footer id="footer">
         <div class="row">
           <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <p class="pull-left">&copy; WEBCASCADE - <a href="http://webcascade.com" target="_blank">webcascade.com</a> - <a href="#"  data-toggle="modal" data-target="#disclaimerModal">Disclaimer</a></p>
-                <a href="https://github.com/Webcascade/DNA2Visual" class="pull-right" target="_blank"><i class="fa fa-github"></i></a>
-              </div>
-            </div>
+            <hr>
+            <p class="pull-left">&copy; WEBCASCADE - <a href="http://webcascade.com" target="_blank">webcascade.com</a> - <a href="#"  data-toggle="modal" data-target="#disclaimerModal">Disclaimer</a></p>
+            <a href="https://github.com/Webcascade/DNA2Visual" class="pull-right" target="_blank"><i class="fa fa-github"></i></a>
           </div>
         </div>
       </footer>
@@ -93,10 +99,10 @@
           </div>
           <div class="modal-body clearfix">
             <div class="list-group">
-              <a href="/examples/x_chromosome_excerpt.txt" class="list-group-item" target="_blank">Human X chromosome excerpt <i class="fa fa-external-link"></i></a>
-              <a href="/examples/hiv_1_excerpt.txt" class="list-group-item" target="_blank">HIV 1 genome excerpt <i class="fa fa-external-link"></i></a>
-              <a href="/examples/yersinia_pestis_excerpt.txt" class="list-group-item" target="_blank">Yersinia Pestis (Plague) genome excerpt <i class="fa fa-external-link"></i></a>
-              <a href="/examples/citrus_clementina_excerpt.txt" class="list-group-item" target="_blank">Citrus Clementina (Clementine) genome excerpt <i class="fa fa-external-link"></i></a>
+              <a href="/examples/x_chromosome_excerpt.txt" class="list-group-item example-link" target="_blank">Human X chromosome excerpt <i class="fa fa-external-link"></i></a>
+              <a href="/examples/hiv_1_excerpt.txt" class="list-group-item example-link" target="_blank">HIV 1 genome excerpt <i class="fa fa-external-link"></i></a>
+              <a href="/examples/yersinia_pestis_excerpt.txt" class="list-group-item example-link" target="_blank">Yersinia Pestis (Plague) genome excerpt <i class="fa fa-external-link"></i></a>
+              <a href="/examples/citrus_clementina_excerpt.txt" class="list-group-item example-link" target="_blank">Citrus Clementina (Clementine) genome excerpt <i class="fa fa-external-link"></i></a>
             </div>
           </div>
           <div class="modal-footer">

@@ -11,8 +11,7 @@
     "bootstrap-sass-official": "3.3.5",
     "d3": "^3.5.16",
     "font-awesome": "fontawesome#^4.5.0",
-    "lodash": "^4.6.1",
-    "clipboard": "^1.5.9"
+    "lodash": "^4.6.1"
   },
   "overrides": {
     "modernizr": {
@@ -20,6 +19,12 @@
     },
     "lodash": {
       "main": ".dist/lodash.js"
+    },
+    "font-awesome": {
+      "main": [
+        "css/font-awesome.css",
+        "fonts/*"
+      ]
     },
     "bootstrap-sass-official": {
       "main": [
@@ -35,12 +40,7 @@
         "./assets/javascripts/bootstrap/popover.js",
         "./assets/javascripts/bootstrap/scrollspy.js",
         "./assets/javascripts/bootstrap/tab.js",
-        "./assets/javascripts/bootstrap/affix.js",
-        "./assets/fonts/bootstrap/glyphicons-halflings-regular.eot",
-        "./assets/fonts/bootstrap/glyphicons-halflings-regular.svg",
-        "./assets/fonts/bootstrap/glyphicons-halflings-regular.ttf",
-        "./assets/fonts/bootstrap/glyphicons-halflings-regular.woff",
-        "./assets/fonts/bootstrap/glyphicons-halflings-regular.woff2"
+        "./assets/javascripts/bootstrap/affix.js"
       ]
     }
   }
