@@ -45,10 +45,12 @@
 
               if (DNA.mode === 'base-4') {
                 aminoacidTypes.hide();
-                DNA.executeD3Color(rgbArray);
+                // downloadButton.show();
+                DNA.executeColor(rgbArray);
               } else {
                 aminoacidTypes.show();
-                DNA.executeD3Codons(rgbArray);
+                // downloadButton.hide();
+                DNA.executeCodons(rgbArray);
               }
 
               displayContainer.show();
@@ -62,12 +64,11 @@
 
           // when download button is clicked, provide PNG
           downloadButton.on('click', function(e) {
-            // var downloadStream = DNA.canvas.toDataURL('image/png');
-            // // Change MIME type to trick the browser to downlaod the file instead of displaying it and define HTTP-style headers
-            // downloadStream = downloadStream.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
-            // downloadStream = downloadStream.replace(/^data:application\/octet-stream/, 'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=Canvas.png');
-            // downloadButton.attr('href', downloadStream);
-            ReImg.fromCanvas(DNA.canvas).downloadPng();
+            // e.preventDefault();
+            var downloadStream = DNA.canvas.toDataURL('image/png');
+            downloadStream = downloadStream.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
+            downloadStream = downloadStream.replace(/^data:application\/octet-stream/, 'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=Canvas.png');
+            downloadButton.attr('href', downloadStream);
           });
 
           // close example modale when user clicks link
@@ -82,7 +83,7 @@
             var cleanString = string.trim().toUpperCase().replace(/(\r\n|\n|\r)/gm,'').slice(0, DNA.maxLength);
 
             if (DNA.mode === 'base-4') {
-              cleanString = DNA.convertToNumbers(cleanString)
+              cleanString = DNA.convertToNumbers(cleanString);
               DNA.squareRoot = Math.floor(Math.sqrt(cleanString.length / DNA.numBase / 3));
             } else {
               DNA.squareRoot = Math.floor(Math.sqrt(cleanString.length / DNA.numBase));
@@ -91,7 +92,7 @@
             var re = new RegExp('.{1,' + DNA.numBase + '}', 'g');
             var returnArray = cleanString.match(re);
             
-            console.log(returnArray);
+            // console.log(returnArray);
             return returnArray;
         },
 
@@ -190,7 +191,7 @@
             console.log( DNA.settings );
         },
 
-        executeD3Color: function(rgbArray) {
+        executeColor: function(rgbArray) {
           var ctx = DNA.canvas.getContext('2d');
           var squareRoot = DNA.squareRoot;
           var pixelSize = DNA.sideLength / squareRoot;
@@ -211,7 +212,7 @@
           console.timeEnd('convert');
         },
 
-        executeD3Codons: function(rgbArray) {
+        executeCodons: function(rgbArray) {
           var ctx = DNA.canvas.getContext('2d');
           var squareRoot = DNA.squareRoot;
           var pixelSize = DNA.sideLength / squareRoot;
