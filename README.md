@@ -3,6 +3,8 @@
 Project for visualizing genetic code (DNA) built with Ember + Ember-CLI + Bootstrap.
 Get DNA code here: http://www.ncbi.nlm.nih.gov/
 
+Checkout a demo here: http://dna2visual.com/
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
