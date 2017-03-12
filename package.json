@@ -1,61 +1,48 @@
 {
-  "name": "sage",
-  "version": "8.2.1",
-  "author": "Ben Word <ben@benword.com>",
-  "homepage": "https://roots.io/sage/",
+  "name": "dna2visual",
+  "version": "0.0.0",
+  "description": "Small description for dna2visual goes here",
   "private": true,
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/roots/sage.git"
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
   },
-  "bugs": {
-    "url": "https://github.com/roots/sage/issues"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://opensource.org/licenses/MIT"
-    }
-  ],
   "scripts": {
-    "build": "bower install && gulp",
-    "jshint": "gulp jshint",
-    "jscs": "jscs gulpfile.js assets/scripts/*.js"
+    "build": "ember build",
+    "start": "ember server",
+    "test": "ember test"
   },
+  "repository": "",
   "engines": {
-    "node": ">= 0.12.0",
-    "npm": ">=2.1.5"
+    "node": ">= 0.10.0"
   },
+  "author": "",
+  "license": "MIT",
   "devDependencies": {
-    "asset-builder": "^1.0.2",
-    "browser-sync": "^2.7.1",
-    "del": "^1.1.1",
-    "gulp": "^3.8.11",
-    "gulp-autoprefixer": "^2.1.0",
-    "gulp-changed": "^1.2.1",
-    "gulp-concat": "^2.5.2",
-    "gulp-flatten": "0.0.4",
-    "gulp-if": "^1.2.5",
-    "gulp-imagemin": "^2.2.1",
-    "gulp-jshint": "^1.9.4",
-    "gulp-less": "^3.0.2",
-    "gulp-minify-css": "^1.0.0",
-    "gulp-plumber": "^1.0.0",
-    "gulp-rename": "^1.2.0",
-    "gulp-rev": "^3.0.1",
-    "gulp-sass": "^2.0.0",
-    "gulp-sourcemaps": "^1.5.1",
-    "gulp-uglify": "^1.1.0",
-    "imagemin-pngcrush": "^4.0.0",
-    "jshint-stylish": "^1.0.1",
-    "lazypipe": "^0.2.2",
-    "merge-stream": "^0.1.7",
-    "minimist": "^1.1.1",
-    "run-sequence": "^1.0.2",
-    "traverse": "^0.6.6",
-    "wiredep": "^2.2.2"
+    "broccoli-asset-rev": "^2.4.2",
+    "ember-ajax": "^2.0.1",
+    "ember-cli": "2.7.0",
+    "ember-cli-app-version": "^1.0.0",
+    "ember-cli-babel": "^5.1.6",
+    "ember-cli-bootstrap-sassy": "0.5.5",
+    "ember-cli-dependency-checker": "^1.2.0",
+    "ember-cli-htmlbars": "^1.0.3",
+    "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+    "ember-cli-inject-live-reload": "^1.4.0",
+    "ember-cli-jshint": "^1.0.0",
+    "ember-cli-qunit": "^2.0.0",
+    "ember-cli-release": "^0.2.9",
+    "ember-cli-sass": "6.1.1",
+    "ember-cli-sri": "^2.1.0",
+    "ember-cli-test-loader": "^1.1.0",
+    "ember-cli-uglify": "^1.2.0",
+    "ember-data": "^2.7.0",
+    "ember-export-application-global": "^1.0.5",
+    "ember-font-awesome": "3.0.4",
+    "ember-load-initializers": "^0.5.1",
+    "ember-resolver": "^2.0.3",
+    "ember-welcome-page": "^1.0.1",
+    "loader.js": "^4.0.1"
   },
-  "dependencies": {
-    "gulp-uglify": "^1.5.3"
-  }
+  "dependencies": {}
 }

@@ -1,0 +1,103 @@
+// Variables
+$brand-primary: #27ae60;
+$brand-gray: #888;
+$white: #fff;
+
+// Import Bootstrap
+@import "bootstrap";
+
+
+h1 small {
+  font-size: 55%;
+}
+
+.error {
+  border: 2px solid $brand-danger;
+}
+
+.jumbotron {
+  padding-left: 15px;
+  padding-right: 15px;
+  a {
+    cursor: pointer;
+  }
+}
+
+#aminoacidTypes {
+  margin-top: 10px;
+  display: none;
+  .fa {
+    margin-right: 5px;
+  }
+}
+
+#dnaDisplayContainer {
+  display: none;
+  @extend .clearfix;
+}
+
+#dnaDisplay {
+  margin-bottom: 0;
+  width: 100%;
+  height: auto;
+}
+
+#downloadButton {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+#main {
+  margin-top: 85px;
+}
+
+#footer {
+  margin-top: 30px;
+  line-height: 24px;
+  p {
+    margin-bottom: 20px;
+  }
+  .fa {
+    font-size: 24px;
+    line-height: 24px;
+  }
+}
+
+#renderButton {
+  position: relative;
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -10px; 
+  margin-left: -9px; 
+  visibility: hidden;
+  color: $white;
+}
+
+// Class based styling
+
+.finished-render  {
+  #introduction {
+    display: none;
+  }
+
+  #dnaDisplayContainer {
+    display: block;
+  }
+}
+
+.is-loading {
+  #renderButton {
+    color: rgba(0,0,0,0);
+  }
+  .loading-spinner {
+    visibility: visible;
+  }
+}
+
+.amino-acids #aminoacidTypes {
+  display: block;
+}

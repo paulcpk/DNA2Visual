@@ -1,0 +1,50 @@
+<!-- DNA Input -->
+<div id="main" class="container {{container-class hasError finishedRender isLoading}} {{settings.mode}}">
+  <div class="row" id="introduction">
+    <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+      <div class="jumbotron">
+        <h1>DNA Visualizer <br><small>Create PNGs from your genome data</small></h1>
+        <p>Just paste your DNA code (not RNA) into the textbox below and hit the render button.</p>
+        <p><strong>The image is rendered in your browser. Depending on your computer's performance, this will eventually take some time.</strong></p>
+        <p>For the best experience use a <b>modern browser</b>.</p>
+        <p>Check out some sequence examples <a data-toggle="modal" data-target="#examplesModal">here</a>.</p>
+      </div>
+    </div>
+  </div>
+  <div class="row" id="dnaDisplayContainer">
+    <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+      <canvas id="dnaDisplay" width="800" height="800"></canvas>
+      <div id="aminoacidTypes">
+        <ul class="list-inline">
+          <li><span class="aminoacid-info"><i class="fa fa-stop" style="color: #FFE75F;"></i>Nonpolar</span></li>
+          <li><span class="aminoacid-info"><i class="fa fa-stop" style="color: #B3DEC0;"></i>Polar</span></li>
+          <li><span class="aminoacid-info"><i class="fa fa-stop" style="color: #BBBFE0;"></i>Basic</span></li>
+          <li><span class="aminoacid-info"><i class="fa fa-stop" style="color: #F8B7D3;"></i>Acidic</span></li>
+          <li><span class="aminoacid-info"><i class="fa fa-stop" style="color: #333333;"></i>Stop codon</span></li>
+        </ul>
+      </div>
+      <div id="downloadButtonContainer">
+        <a href="#" class="btn btn-primary btn-block" id="downloadButton" download="DNA2Visual.png" {{action "downloadImage" preventDefault=false}}><i class="fa fa-download"></i>&nbsp;Download</a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+      <form action="" id="dnaForm">
+        <div class="form-group">
+          <select name="typeSelect" id="typeSelect" class="form-control" onchange={{action "logSelect" value="target.value"}}>
+            <option value="base-4" selected>Color (Base-4)</option>
+            <option value="amino-acids">Amino acids (nonpolar|polar|basic|acidic|stop)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          {{textarea name="dnaInput" value=dnaInput cols="30" rows="10" class="form-control" placeholder="Paste your DNA sequence here..." }}
+        </div>
+        <div class="form-group render-button-container">
+          <button {{action "renderData" dnaInput}} id="renderButton" class="btn btn-primary btn-lg">Render<i class="loading-spinner fa fa-refresh fa-spin fa-fw"></i></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- /DNA Input -->

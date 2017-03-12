@@ -1,47 +1,8 @@
 {
-  "name": "sage",
-  "homepage": "https://roots.io/sage/",
-  "authors": [
-    "Ben Word <ben@benword.com>"
-  ],
-  "license": "MIT",
-  "private": true,
+  "name": "dna2visual",
   "dependencies": {
-    "modernizr": "2.8.2",
-    "bootstrap-sass-official": "3.3.5",
-    "d3": "^3.5.16",
-    "font-awesome": "fontawesome#^4.5.0",
-    "lodash": "^4.6.1"
-  },
-  "overrides": {
-    "modernizr": {
-      "main": "./modernizr.js"
-    },
-    "lodash": {
-      "main": ".dist/lodash.js"
-    },
-    "font-awesome": {
-      "main": [
-        "css/font-awesome.css",
-        "fonts/*"
-      ]
-    },
-    "bootstrap-sass-official": {
-      "main": [
-        "./assets/stylesheets/_bootstrap.scss",
-        "./assets/javascripts/bootstrap/transition.js",
-        "./assets/javascripts/bootstrap/alert.js",
-        "./assets/javascripts/bootstrap/button.js",
-        "./assets/javascripts/bootstrap/carousel.js",
-        "./assets/javascripts/bootstrap/collapse.js",
-        "./assets/javascripts/bootstrap/dropdown.js",
-        "./assets/javascripts/bootstrap/modal.js",
-        "./assets/javascripts/bootstrap/tooltip.js",
-        "./assets/javascripts/bootstrap/popover.js",
-        "./assets/javascripts/bootstrap/scrollspy.js",
-        "./assets/javascripts/bootstrap/tab.js",
-        "./assets/javascripts/bootstrap/affix.js"
-      ]
-    }
+    "ember": "~2.7.0",
+    "ember-cli-shims": "0.1.1",
+    "ember-qunit-notifications": "0.1.0"
   }
 }
